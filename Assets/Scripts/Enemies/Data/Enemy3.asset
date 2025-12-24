@@ -16,4 +16,4 @@ MonoBehaviour:
   <MoveSpeed>k__BackingField: 1.5
   <WanderRadius>k__BackingField: 8
   <ChangeTargetTime>k__BackingField: 3
-  <Prefab>k__BackingField: {fileID: 9049197809281346415, guid: d08e9fd0f2407384cad98e008ec7c783, type: 3}
+  <Prefab>k__BackingField: {fileID: 1672613402923195734, guid: 1a53d3afedf420d4285cd0735f1072bd, type: 3}
