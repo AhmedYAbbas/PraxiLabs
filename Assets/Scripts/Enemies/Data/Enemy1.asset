@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a23d4737dbcb84ba88c50ebfa998be, type: 3}
+  m_Name: Enemy1
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyTypeData
+  <Name>k__BackingField: White
+  <MoveSpeed>k__BackingField: 1.5
+  <WanderRadius>k__BackingField: 8
+  <ChangeTargetTime>k__BackingField: 3
+  <Prefab>k__BackingField: {fileID: 4049812590216527255, guid: 0824de2d620e3d343be11e5d9c294010, type: 3}
