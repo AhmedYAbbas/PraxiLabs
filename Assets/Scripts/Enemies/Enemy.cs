@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody), typeof(Animator))]
 public class Enemy : MonoBehaviour
 {
     [Header("AI")]

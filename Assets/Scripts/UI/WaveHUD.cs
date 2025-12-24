@@ -6,6 +6,7 @@ public class WaveHUD : MonoBehaviour
     [SerializeField] TMP_Text waveText;
     [SerializeField] TMP_Text enemyText;
     [SerializeField] TMP_Text nextWaveTimerText;
+    [SerializeField] TMP_Text pauseText;
 
     private bool _paused = false;
     private float _delay = 5f;
@@ -34,16 +35,21 @@ public class WaveHUD : MonoBehaviour
 
     private void Update() => HandleWaveDelayText();
 
-    private void OnEnemyCountChanged(int count, int total) => enemyText.SetText("Enemies: {0}/{1}", count, total);
-    private void OnGamePaused(bool paused) => _paused = paused;
-    private void OnWaveCompleted() => nextWaveTimerText.gameObject.SetActive(true);
+    private void OnEnemyCountChanged(int count, int total) => enemyText?.SetText("Enemies: {0}/{1}", count, total);
+    private void OnWaveCompleted() => nextWaveTimerText?.gameObject.SetActive(true);
+    private void OnDelayFinished() => nextWaveTimerText?.gameObject.SetActive(false);
     private void OnDelayTick(int delay) => _delay = delay;
-    private void OnDelayFinished() => nextWaveTimerText.gameObject.SetActive(false);
+
+    private void OnGamePaused(bool paused)
+    {
+        _paused = paused;
+        pauseText?.SetText($"Paused: {_paused}");
+    }
 
     private void OnWaveStarted(int wave)
     {
-        nextWaveTimerText.gameObject.SetActive(false);
-        waveText.SetText("Wave: {0}", wave);
+        nextWaveTimerText?.gameObject.SetActive(false);
+        waveText?.SetText("Wave: {0}", wave);
     }
 
     private void HandleWaveDelayText()
@@ -53,7 +59,7 @@ public class WaveHUD : MonoBehaviour
 
         if (nextWaveTimerText.gameObject.activeSelf)
         {
-            nextWaveTimerText.SetText("Next Wave In: {0}", Mathf.CeilToInt(_delay));
+            nextWaveTimerText?.SetText("Next Wave In: {0}", Mathf.CeilToInt(_delay));
             nextWaveTimerText.transform.localScale = Vector3.one * (1.1f + Mathf.Sin(Time.time * 4f) * 0.05f);
         }
     }

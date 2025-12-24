@@ -15,7 +15,7 @@ public class EnemyIdleState : EnemyState
 
     public override void Enter()
     {
-        _animator.SetBool("Wander", false);
+        _animator?.SetBool("Wander", false);
         _timer = _idleDuration;
         _movement.ClearTarget();
     }

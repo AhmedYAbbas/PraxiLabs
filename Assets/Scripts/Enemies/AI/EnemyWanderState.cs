@@ -19,7 +19,7 @@ public class EnemyWanderState : EnemyState
     public override void Enter()
     {
         PickNewTarget();
-        _animator.SetBool("Wander", true);
+        _animator?.SetBool("Wander", true);
     }
 
     public override void Tick()
