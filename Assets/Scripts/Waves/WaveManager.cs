@@ -18,13 +18,13 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private float spawnInterval = 0.25f;
     [SerializeField] private float delayBetweenWaves = 5f;
 
-    public static Action<int> OnWaveStarted;
-    public static Action OnWaveCompleted;
-    public static Action<int, int> OnEnemyCountChanged;
-    public static Action<bool> OnGamePaused;
+    public static event Action<int> OnWaveStarted;
+    public static event Action OnWaveCompleted;
+    public static event Action<int, int> OnEnemyCountChanged;
+    public static event Action<bool> OnGamePaused;
 
-    public static Action<int> OnNextWaveDelayTick;
-    public static Action OnNextWaveDelayFinished;
+    public static event Action<int> OnNextWaveDelayTick;
+    public static event Action OnNextWaveDelayFinished;
 
     private int _currentWave;
     private int _totalEnemies;
