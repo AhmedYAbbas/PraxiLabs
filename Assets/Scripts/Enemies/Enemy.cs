@@ -29,9 +29,4 @@ public class Enemy : MonoBehaviour
         transform.SetPositionAndRotation(location, rotation);
         enemyAI.ChangeState(new EnemyWanderState(enemyAI, enemyMovement.WanderRadius, enemyMovement.ChangeTargetTime));
     }
-
-    public void Die()
-    {
-        
-    }
 }

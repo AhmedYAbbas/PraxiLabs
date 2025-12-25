@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a23d4737dbcb84ba88c50ebfa998be, type: 3}
+  m_Name: Primitive1
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyTypeData
+  <Name>k__BackingField: Primitive 1
+  <MoveSpeed>k__BackingField: 1.5
+  <WanderRadius>k__BackingField: 8
+  <ChangeTargetTime>k__BackingField: 3
+  <Prefab>k__BackingField: {fileID: 3307237978377883810, guid: 132091b68d0a9e14a9958780b70563a9, type: 3}

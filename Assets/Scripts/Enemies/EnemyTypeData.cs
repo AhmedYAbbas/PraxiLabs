@@ -30,11 +30,7 @@ public class EnemyTypeData : ScriptableObject
         enemy.gameObject.SetActive(true);
         enemy.Spawn(WaveFactory.transform.position, WaveFactory.transform.rotation);
     }
-    public void OnRelease(Enemy enemy)
-    {
-        //enemy.Die();
-        enemy.gameObject.SetActive(false);
-    }
 
+    public void OnRelease(Enemy enemy) => enemy.gameObject.SetActive(false);
     public void OnDestroyPoolObject(Enemy enemy) => Destroy(enemy.gameObject);
 }

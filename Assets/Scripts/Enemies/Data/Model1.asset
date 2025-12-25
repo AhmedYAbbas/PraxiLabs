@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31a23d4737dbcb84ba88c50ebfa998be, type: 3}
-  m_Name: Enemy2
+  m_Name: Model1
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTypeData
-  <Name>k__BackingField: Green
+  <Name>k__BackingField: Model 1
   <MoveSpeed>k__BackingField: 1.5
   <WanderRadius>k__BackingField: 8
   <ChangeTargetTime>k__BackingField: 3
-  <Prefab>k__BackingField: {fileID: 6023536159189473114, guid: 9982fd04fb3cc624ca76ff73b1eeacf1, type: 3}
+  <Prefab>k__BackingField: {fileID: 1138032966533176372, guid: beb803f4e4d71e243b948c12ba0ea8cb, type: 3}
