@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,14 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private WaveFactory waveFactory;
     [SerializeField] private float spawnInterval = 0.25f;
     [SerializeField] private float delayBetweenWaves = 5f;
+
+    public static Action<int> OnWaveStarted;
+    public static Action OnWaveCompleted;
+    public static Action<int, int> OnEnemyCountChanged;
+    public static Action<bool> OnGamePaused;
+
+    public static Action<int> OnNextWaveDelayTick;
+    public static Action OnNextWaveDelayFinished;
 
     private int _currentWave;
     private int _totalEnemies;
@@ -58,7 +67,7 @@ public class WaveManager : MonoBehaviour
         _currentWave++;
         _totalEnemies = GetEnemyCount(_currentWave);
 
-        GameEvents.OnWaveStarted?.Invoke(_currentWave);
+        OnWaveStarted?.Invoke(_currentWave);
 
         _spawnCoroutine = StartCoroutine(SpawnRoutine());
     }
@@ -76,13 +85,13 @@ public class WaveManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        EnemyTypeData type = enemyTypes[Random.Range(0, enemyTypes.Length)];
+        EnemyTypeData type = enemyTypes[UnityEngine.Random.Range(0, enemyTypes.Length)];
 
         Enemy enemy = waveFactory.Spawn(type);
         _activeEnemies.Add(enemy);
         _aliveEnemies++;
 
-        GameEvents.OnEnemyCountChanged(_aliveEnemies, GetEnemyCount(_currentWave));
+        OnEnemyCountChanged(_aliveEnemies, GetEnemyCount(_currentWave));
     }
 
     #endregion
@@ -100,7 +109,7 @@ public class WaveManager : MonoBehaviour
         if (_delayCoroutine != null)
             return;
 
-        GameEvents.OnWaveCompleted?.Invoke();
+        OnWaveCompleted?.Invoke();
         _delayCoroutine = StartCoroutine(NextWaveDelay());
     }
 
@@ -116,7 +125,7 @@ public class WaveManager : MonoBehaviour
         float remaining = delayBetweenWaves;
         int lastWholeSecond = Mathf.CeilToInt(remaining);
 
-        GameEvents.OnNextWaveDelayTick?.Invoke(lastWholeSecond);
+        OnNextWaveDelayTick?.Invoke(lastWholeSecond);
 
         while (remaining > 0f)
         {
@@ -129,13 +138,13 @@ public class WaveManager : MonoBehaviour
             if (currentWholeSecond != lastWholeSecond)
             {
                 lastWholeSecond = currentWholeSecond;
-                GameEvents.OnNextWaveDelayTick?.Invoke(currentWholeSecond);
+                OnNextWaveDelayTick?.Invoke(currentWholeSecond);
             }
 
             yield return null;
         }
 
-        GameEvents.OnNextWaveDelayFinished?.Invoke();
+        OnNextWaveDelayFinished?.Invoke();
         StartNextWave();
     }
 
@@ -146,7 +155,7 @@ public class WaveManager : MonoBehaviour
     private void TogglePause()
     {
         _paused = !_paused;
-        GameEvents.OnGamePaused?.Invoke(_paused);
+        OnGamePaused?.Invoke(_paused);
 
         if (!_paused && _waveCompletedWhilePaused)
         {
@@ -171,7 +180,7 @@ public class WaveManager : MonoBehaviour
 
     private void DestroyWaveWithDelay()
     {
-        if (_transition)
+        if (_transition || _aliveEnemies == 0)
             return;
 
         if (_spawnCoroutine != null)
