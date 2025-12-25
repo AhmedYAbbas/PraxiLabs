@@ -13,24 +13,24 @@ public class WaveHUD : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEvents.OnWaveStarted += OnWaveStarted;
-        GameEvents.OnEnemyCountChanged += OnEnemyCountChanged;
-        GameEvents.OnWaveCompleted += OnWaveCompleted;
-        GameEvents.OnGamePaused += OnGamePaused;
+        WaveManager.OnWaveStarted += OnWaveStarted;
+        WaveManager.OnEnemyCountChanged += OnEnemyCountChanged;
+        WaveManager.OnWaveCompleted += OnWaveCompleted;
+        WaveManager.OnGamePaused += OnGamePaused;
 
-        GameEvents.OnNextWaveDelayTick += OnDelayTick;
-        GameEvents.OnNextWaveDelayFinished += OnDelayFinished;
+        WaveManager.OnNextWaveDelayTick += OnDelayTick;
+        WaveManager.OnNextWaveDelayFinished += OnDelayFinished;
     }
 
     private void OnDisable()
     {
-        GameEvents.OnWaveStarted -= OnWaveStarted;
-        GameEvents.OnEnemyCountChanged -= OnEnemyCountChanged;
-        GameEvents.OnWaveCompleted -= OnWaveCompleted;
-        GameEvents.OnGamePaused -= OnGamePaused;
+        WaveManager.OnWaveStarted -= OnWaveStarted;
+        WaveManager.OnEnemyCountChanged -= OnEnemyCountChanged;
+        WaveManager.OnWaveCompleted -= OnWaveCompleted;
+        WaveManager.OnGamePaused -= OnGamePaused;
 
-        GameEvents.OnNextWaveDelayTick += OnDelayTick;
-        GameEvents.OnNextWaveDelayFinished += OnDelayFinished;
+        WaveManager.OnNextWaveDelayTick += OnDelayTick;
+        WaveManager.OnNextWaveDelayFinished += OnDelayFinished;
     }
 
     private void Update() => HandleWaveDelayText();
